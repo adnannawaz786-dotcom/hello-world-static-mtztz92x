@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple hello world static website">
+    <meta name="author" content="Hello World Static">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="wave">👋</span>
+                    Hello, World!
+                </h1>
+                <p class="hero-subtitle">
+                    Welcome to a simple yet beautiful static website
+                </p>
+                <div class="hero-description">
+                    <p>This is a modern, responsive hello world page built with clean HTML and CSS. It features smooth animations, glass morphism effects, and follows accessibility best practices.</p>
+                </div>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showMessage()">
+                        Say Hello
+                    </button>
+                    <button class="btn btn-secondary" onclick="toggleTheme()">
+                        Toggle Theme
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern Design</h3>
+                    <p>Clean, contemporary styling with glass morphism effects</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Mobile-first design that looks great on all devices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized static files for lightning-fast performance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♿</div>
+                    <h3>Accessible</h3>
+                    <p>Built with accessibility and semantic HTML in mind</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="message-display" id="messageDisplay" role="alert" aria-live="polite">
+            <p>Hello from the interactive world! 🌟</p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Hello World Static. Built with ❤️ and modern web standards.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive functionality
+        function showMessage() {
+            const messageDisplay = document.getElementById('messageDisplay');
+            messageDisplay.classList.add('show');
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageDisplay.classList.remove('show');
+            }, 3000);
+        }
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            
+            // Save theme preference
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        
+        // Load saved theme preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+            
+            // Add entrance animation
+            document.body.classList.add('loaded');
+        });
+        
+        // Keyboard accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target.classList.contains('btn')) {
+                    e.preventDefault();
+                    e.target.click();
+                }
+            }
+        });
+        
+        // Smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
